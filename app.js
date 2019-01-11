@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const os = require('os');
 const api = require('./api');
+const config = require('./config');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,9 +13,7 @@ app.get('*', function(req, res) {
   res.send('Здесь должна рендериться страница сайта react');
 });
 
-const PORT = 8081;
-app.listen(PORT, function(err) {
+app.listen(config.PORT, function(err) {
   console.log('Сервер запущен.');
-  console.log(`Перейти: http://localhost:${PORT}`);
-  console.log(`ip: ${os.networkInterfaces().Ethernet[1].address}:${PORT}`);
+  console.log(`Перейти: http://localhost:${config.PORT}`);
 });

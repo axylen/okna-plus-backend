@@ -1,6 +1,10 @@
 const express = require('express');
 const routs = express.Router();
 
+const mysql = require('../lib/mysqlFunctions');
+
+mysql.initialSetup({ recreate: true });
+
 routs.get('/', async function(req, res) {
   const responce = {
     text: 'working',
@@ -69,3 +73,68 @@ module.exports = routs;
     delete	удаляет заказ
 
 */
+
+const w3 = {
+  width: {
+    type: 'range',
+    min: 900,
+    max: 1800,
+    label: 'Ширина',
+  },
+  height: {
+    type: 'range',
+    min: 1100,
+    max: 1600,
+    label: 'Высота',
+  },
+  profile: {
+    type: 'select',
+    values: {
+      exprof: {
+        name: 'Exprof',
+        price: 5000,
+        window: {
+          откидное: {
+            name: 'Откидное',
+            price: 1000,
+          },
+          поворотноОткидное: {
+            name: 'Поворотно-откидное',
+            price: 2500,
+          },
+        },
+      },
+      proplex: {
+        name: 'Proplex',
+        price: 6500,
+      },
+    },
+  },
+  window: {
+    откидное: {
+      name: 'Откидное',
+      price: 1100,
+    },
+    поворотное: {
+      name: 'Поворотное',
+      price: 1500,
+    },
+    поворотноОткидное: {
+      name: 'Поворотно-откидное',
+      price: 2700,
+    },
+  },
+  furniture: {
+    type: 'select',
+    values: {
+      axor: {
+        name: 'Axor',
+        price: 1000,
+      },
+      maco: {
+        name: 'Maco',
+        price: 1500,
+      },
+    },
+  },
+};
