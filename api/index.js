@@ -1,9 +1,9 @@
 const express = require('express');
 const routs = express.Router();
 
-const mysql = require('../lib/mysqlFunctions');
+const db = require('../lib/dbFunctions');
 
-mysql.initialSetup({ recreate: true });
+db.initialSetup({ recreate: true });
 
 routs.get('/', async function(req, res) {
   const responce = {
