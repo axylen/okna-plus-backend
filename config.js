@@ -5,6 +5,7 @@ module.exports = {
   DB_NAME: process.env.DB_NAME || 'okna_plus',
   DB_USER: process.env.DB_USER || 'root',
   DB_PASS: process.env.DB_PASS || '12345',
+  DB_PORT: process.env.DB_PORT || '3306',
   TABLE_PREFIX: 'okp_',
 };
 
