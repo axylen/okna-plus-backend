@@ -1,27 +1,12 @@
 const express = require('express');
 const routs = express.Router();
+const products = require('./products');
 
 const db = require('../lib/dbFunctions');
 
 db.initialSetup({ recreate: true });
 
-routs.get('/', async function(req, res) {
-  const responce = {
-    text: 'working',
-    test: [
-      {
-        text: '1',
-        num: 1,
-      },
-      {
-        text: '2',
-        num: 2,
-      },
-    ],
-  };
-
-  res.json(responce);
-});
+routs.use('/products', products);
 
 module.exports = routs;
 
