@@ -1,5 +1,5 @@
 module.exports = {
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 8080,
   HOST: process.env.HOST || 'localhost',
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_NAME: process.env.DB_NAME || 'okna_plus',
