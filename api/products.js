@@ -30,7 +30,7 @@ routs.put('/', function(req, res) {
 
 routs.get('/:id', async function(req, res) {
   db.getProductParams(req.params.id)
-    .then(data => res.json(data))
+    .then(data => res.json(data[0]))
     .catch(err => {
       res.status(404).send();
     });
