@@ -2,7 +2,7 @@ const express = require('express');
 const routs = express.Router();
 
 const db = require('../lib/dbFunctions');
-const { mergeObjects } = require('../lib/functions');
+const { mergeObjects, arrayToObject } = require('../lib/functions');
 
 routs.get('/', async function(req, res) {
   if (req.query.extended) {
@@ -19,9 +19,12 @@ routs.put('/', function(req, res) {
 
   db.getProductParams(...keys)
     .then(async oldData => {
+      oldData = arrayToObject(oldData, el => el.product_key);
       const newData = mergeObjects(oldData, req.body);
       await db.setProductParams(newData);
-      res.json(newData);
+
+      const products = await db.getProductParams();
+      res.json(products);
     })
     .catch(err => {
       res.status(404).send();
