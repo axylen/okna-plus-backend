@@ -7,13 +7,14 @@ const api = require('./api');
 const config = require('./config');
 
 app.use(express.static('public'));
+app.use(express.static('client'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', api);
 
 app.get('*', function(req, res) {
-  res.send('Здесь должна рендериться страница сайта react');
+  res.sendFile(__dirname + '/client/index.html');
 });
 
 app.listen(config.PORT, function(err) {
