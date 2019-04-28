@@ -17,33 +17,12 @@ routs.post('/', async function(req, res) {
     status: 'new',
   };
 
-  const resp = await db.createOrder(orderData, products);
-
-  // Запросить данные по списку товаров
-  // Рассчитать параметры для списка товаров
-  // Рассчитать параметры для заказа
-  // Добавить заказ
-  // Получить id заказа
-  // Добавить список товаров к заказу с полученным id
-
-  // ДАННЫЕ О ЗАКАЗЕ
-  // id
-  // date
-  // * client
-  // status
-  // price - сумма стоимостей товаров * их количество
-
-  // ДАННЫЕ О СПИСКЕ ТОВАРОВ ЗАКАЗА
-  // id
-  // order_id (из данных о заказе)
-  // name - берётся из базы по ключу
-  // type - берётся из базы по ключу
-  // cost - рассчитывается по параметрам
-  // * count
-  // area - рассчитывается по параметрам
-  // * params
-
-  res.json(resp);
+  try {
+    const createdOrder = await db.createOrder(orderData, products);
+    res.json(createdOrder);
+  } catch (error) {
+    res.status(500).send('Не удалось создать заказ');
+  }
 });
 
 // Получить данные по заказу
