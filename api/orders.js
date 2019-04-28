@@ -6,7 +6,7 @@ const db = require('../lib/dbFunctions');
 // Получить список заказов
 routs.get('/', async function(req, res) {
   const page = req.query.page || 1;
-  const orders =  await db.getOrders(page);
+  const orders = await db.getOrders(page);
   res.json(orders);
 });
 
@@ -30,6 +30,8 @@ routs.post('/', async function(req, res) {
 // Получить данные по заказу
 routs.get('/:id', async function(req, res) {
   const { id } = req.params;
+
+  res.json(await db.getOrder(id));
 });
 
 // Обновить данные заказа (статус)

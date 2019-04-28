@@ -11,5 +11,10 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "translit": "^0.1.0",
+    "translit-russian": "^0.0.2"
   }
 }
