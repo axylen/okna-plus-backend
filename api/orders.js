@@ -5,7 +5,9 @@ const db = require('../lib/dbFunctions');
 
 // Получить список заказов
 routs.get('/', async function(req, res) {
-  // Список заказов по 10 штук
+  const page = req.query.page || 1;
+  const orders =  await db.getOrders(page);
+  res.json(orders);
 });
 
 // Добавить заказ
