@@ -6,8 +6,11 @@ const db = require('../lib/dbFunctions');
 // Получить список заказов
 routs.get('/', async function(req, res) {
   const page = req.query.page || 1;
-  const orders = await db.getOrders(page);
-  res.json(orders);
+  try {
+    res.json(await db.getOrders(page));
+  } catch (error) {
+    res.status(404).send('Не удалось получить список заказов');
+  }
 });
 
 // Добавить заказ
