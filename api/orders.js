@@ -31,7 +31,11 @@ routs.post('/', async function(req, res) {
 routs.get('/:id', async function(req, res) {
   const { id } = req.params;
 
-  res.json(await db.getOrder(id));
+  try {
+    res.json(await db.getOrder(id));
+  } catch (error) {
+    res.status(404).send('Заказ с данным id не найден');
+  }
 });
 
 // Обновить данные заказа (статус)
