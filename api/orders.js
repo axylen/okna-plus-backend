@@ -2,9 +2,10 @@ const express = require('express');
 const routs = express.Router();
 
 const db = require('../lib/dbFunctions');
+const { withAuth } = require('./middleware');
 
 // Получить список заказов
-routs.get('/', async function(req, res) {
+routs.get('/', withAuth, async function(req, res) {
   const page = req.query.page || 1;
   try {
     res.json(await db.getOrders(page));
@@ -31,7 +32,7 @@ routs.post('/', async function(req, res) {
 });
 
 // Получить данные по заказу
-routs.get('/:id', async function(req, res) {
+routs.get('/:id', withAuth, async function(req, res) {
   const { id } = req.params;
 
   try {
@@ -42,7 +43,7 @@ routs.get('/:id', async function(req, res) {
 });
 
 // Обновить данные заказа (статус)
-routs.put('/:id', async function(req, res) {
+routs.put('/:id', withAuth, async function(req, res) {
   const { id } = req.params;
 });
 

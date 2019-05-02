@@ -2,6 +2,7 @@ const express = require('express');
 const routs = express.Router();
 
 const db = require('../lib/dbFunctions');
+const { withAuth } = require('./middleware');
 const { mergeObjects, arrayToObject } = require('../lib/functions');
 
 routs.get('/', async function(req, res) {
@@ -14,7 +15,7 @@ routs.get('/', async function(req, res) {
   }
 });
 
-routs.put('/', function(req, res) {
+routs.put('/', withAuth, function(req, res) {
   const keys = Object.keys(req.body);
 
   db.getProductParams(...keys)
