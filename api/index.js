@@ -4,10 +4,11 @@ const products = require('./products');
 const orders = require('./orders');
 const user = require('./user');
 const stats = require('./stats');
+const { RECREATE_DB } = require('../config');
 
 const db = require('../lib/dbFunctions');
 
-db.initialSetup({ recreate: true });
+db.initialSetup({ recreate: RECREATE_DB });
 
 routs.use('/products', products);
 routs.use('/orders', orders);
