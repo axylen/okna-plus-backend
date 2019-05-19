@@ -10,6 +10,7 @@ module.exports = {
   DB_PORT: process.env.DB_PORT || '3306',
   TABLE_PREFIX: 'okp_',
   // Настроки приложения
+  DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD || '12345',
   SECRET_KEY: process.env.SECRET_KEY || 'okp_secret-key',
   RECREATE_DB: true,
   FAKE_ORDERS_NUM: 1000,
