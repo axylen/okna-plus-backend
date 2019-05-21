@@ -7,8 +7,10 @@ const { withAuth } = require('./middleware');
 // Получить список заказов
 routs.get('/', withAuth, async function(req, res) {
   const page = req.query.page || 1;
+  const { num, fio, phone } = req.query;
+
   try {
-    res.json(await db.getOrders(page));
+    res.json(await db.getOrders({ page, num, fio, phone }));
   } catch (error) {
     res.status(404).send('Не удалось получить список заказов');
   }
